@@ -1,0 +1,14 @@
+<script>
+
+    foodName          = "Salad"
+    foodPriceValue    = 25.00
+    foodPriceUnits    = " MDL"
+    deliveryTax       = 15.00
+
+    clientQuantity    = prompt("MENU\n\n" + foodName + "\n\nHow many items")
+
+    totalPrice        = (foodPriceValue * clientQuantity) + deliveryTax
+    alert ("You have ordered " + clientQuantity + " items" +
+           "\n\nBill: " + totalPrice + foodPriceUnits + 
+           "\n\nPrice includes delivery tax!")
+</script>
