@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Walk Robot</title>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+        integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+<style>
+    body {
+        background-color: #d0d0d0;
+    }
+    #box {
+        width: 500px;
+        height: 500px;
+        border: 4px solid #1F2BBA;
+        border-radius: 35px;
+        margin: auto;
+        margin-top: 20px;
+        /* background-image: url(texture.jpg); */
+        background-image: url(texture1.jpg);
+        background-size: contain;
+        transition: 2s;
+    }
+    #box:hover {
+        background-image: url(texture1.png), url(texture1.jpg);
+        border: 4px solid #30a3e2;
+    }
+    .robot {
+        width: 100px;
+        height: 100px;
+        background-image: url(robot.png);
+        background-size: contain;
+    }
+    .robot:hover {
+        transform: rotateY(180deg);
+    }
+    .direction {
+        text-align: center;
+    }
+    button {
+        width: 50px;
+        height: 50px;
+        border-radius: 100%;
+        border: 3px solid #1F2BBA;
+        font-size: 1.5em;
+        color: #1F2BBA;
+        background-color: #bed9f9;
+        transition: .25s;
+    }
+    button:hover {
+        border: 3px solid #06E4FC;
+        color: #06befc;
+        background-color: #fff;
+    }
+</style>
+<body>
+    <script>
+        // box.innerHTML = 'Another message'
+
+        left = 0
+        up = 0
+
+    </script>
+    <div id="box">
+        <div class="robot">
+
+        </div>
+    </div>
+    <div class="direction" style="margin-top: 10px;">
+        <div>
+            <button
+            onclick="
+                    up -= 50
+                    up < 0 ? up = 0: null
+                    box.innerHTML = `<div class='robot' style='margin-left: ${left}px; margin-top: ${up}px;'></div>`
+                "
+            ><i class="fa-solid fa-arrow-up"></i></button>
+        </div>
+        <div>
+            <button 
+            onclick="
+                // js code
+                // 1. increase the coordinate
+                left -= 50
+
+                // 1.b limits
+                left < 0 ? left = 0: null
+
+                // 2. render it in the box
+                box.innerHTML = `<div class='robot' style='margin-left: ${left}px; margin-top: ${up}px;'></div>`
+                "
+            >
+                <i class="fa-solid fa-arrow-left"></i>
+            </button>
+            <button style="margin-left: 50px;"
+                onclick="
+                left += 50
+                left > 400 ? left = 400: null
+                box.innerHTML = `<div class='robot' style='margin-left: ${left}px; margin-top: ${up}px;'></div>`
+                "
+                >
+                <i class="fa-solid fa-arrow-right"></i>
+            </button>
+        </div>
+        <div>
+            <button 
+                onclick="
+                    up += 50
+                    up > 400 ? up = 400: null
+                    box.innerHTML = `<div class='robot' style='margin-left: ${left}px; margin-top: ${up}px;'></div>`
+                "
+            >
+                <i class="fa-solid fa-arrow-down"></i>
+            </button>
+        </div>
+    </div>
+     
+</body>
+</html>
+
+<!-- 
+    - id as variables
+    - $0 - variable -- > selected element in inspector
+    - execute js onclick
+    - increment / decrement
+    - template strings   variable intepolation
+
+
+
+
+
+
+ELEMENT > object / structure
+
+> attributes: element.attribute
+> HTML content: element.innerHTML
+ -->
