@@ -1,0 +1,95 @@
+<script>
+
+    foodPriceUnits = " MDL"
+
+    foodOneName = "Salad"
+    foodOnePriceValue = 25
+    foodOneAvailQ = 5
+
+    clientFoodOneQ = parseInt(prompt("How many " + foodOneName + " do you want?"))
+
+    if (foodOneAvailQ >= clientFoodOneQ) {
+        costOne = foodOnePriceValue * clientFoodOneQ
+    } else {
+        alert("Sorry, we can offer only " + foodOneAvailQ +
+            "\nPlease select available quantities.")
+        clientFoodOneQ = parseInt(prompt("How many " + foodOneName + " do you want?"))
+        costOne = foodOnePriceValue * clientFoodOneQ
+    }
+
+    foodTwoName = "Sandwich"
+    foodTwoPriceValue = 45.00
+    foodTwoAvailQ = 3
+
+    clientFoodTwoQ = parseInt(prompt("How many " + foodTwoName + " do you want?"))
+
+    if (foodTwoAvailQ >= clientFoodTwoQ) {
+        costTwo = foodTwoPriceValue * clientFoodTwoQ
+    } else {
+        alert("Sorry, we can offer only " + foodTwoAvailQ +
+            "\nPlease select available quantities.")
+        clientFoodTwoQ = parseInt(prompt("How many " + foodTwoName + " do you want?"))
+        costTwo = foodTwoPriceValue * clientFoodTwoQ
+    }
+
+    foodThreeName = "Steak"
+    foodThreePriceValue = 85.00
+    foodThreeAvailQ = 4
+
+    clientFoodThreeQ = parseInt(prompt("How many " + foodThreeName + " do you want?"))
+
+    if (foodThreeAvailQ >= clientFoodThreeQ) {
+        costThree = foodThreePriceValue * clientFoodThreeQ
+    } else {
+        alert("Sorry, we can offer only " + foodThreeAvailQ +
+            "\nPlease select available quantities.")
+        clientFoodThreeQ = parseInt(prompt("How many " + foodThreeName + " do you want?"))
+        costThree = foodThreePriceValue * clientFoodThreeQ
+    }
+
+    foodFourName = "Rice"
+    foodFourPriceValue = 35.00
+    foodFourAvailQ = 6
+
+    clientFoodFourQ = parseInt(prompt("How many " + foodFourName + " do you want?"))
+
+    if (foodFourAvailQ >= clientFoodFourQ) {
+        costFour = foodFourPriceValue * clientFoodFourQ
+    } else {
+        alert("Sorry, we can offer only " + foodFourAvailQ +
+            "\nPlease select available quantities.")
+        clientFoodFourQ = parseInt(prompt("How many " + foodFourName + " do you want?"))
+        costFour = foodFourPriceValue * clientFoodFourQ
+    }
+
+    foodFiveName = "Bread"
+    foodFivePriceValue = 5.00
+    foodFiveAvailQ = 10
+
+    clientFoodFiveQ = parseInt(prompt("How many " + foodFiveName + " do you want?"))
+
+    if (foodFiveAvailQ >= clientFoodFiveQ) {
+        costFive = foodFivePriceValue * clientFoodFiveQ
+    } else {
+        alert("Sorry, we can offer only " + foodFiveAvailQ +
+            "\nPlease select available quantities.")
+        clientFoodFiveQ = parseInt(prompt("How many " + foodFiveName + " do you want?"))
+        costFive = foodFivePriceValue * clientFoodFiveQ
+    }
+
+    deliveryTax = 45.00
+
+    price = costOne + costTwo + costThree + costFour + costFive
+
+    if (price >= 400) {
+        totalPrice = price
+        alert("Total " + totalPrice + foodPriceUnits +
+              "\n\nDelivery is free!")
+    } else {
+        totalPrice = price + deliveryTax
+        alert("Total " + totalPrice + foodPriceUnits +
+            "\n\nPrice includes delivery tax!" +
+            "\n\nDelivery is free for orders over 400 lei")
+    }
+
+</script>
