@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+<form action="/submit" method="POST">
+    <label for="myInput">Insert temperature:</label>
+    <br>
+    <br>
+    <input type="text" id="myInput" oninput="updateTemperature()" autofocus>
+    <br>
+    <br>
+    <button onclick="showValue()">Show Emoji</button>
+</form>
+
+<script>
+    let temperatureC = 18;
+
+    function updateTemperature() {
+        const inputElement = document.getElementById("myInput");
+        temperatureC = parseInt(inputElement.value);
+    }
+
+    function showValue() {
+        if (temperatureC >= 30) {
+            document.write("<img src='hot-face-emoji.svg'>");
+        } else if (temperatureC >= 25) {
+            document.write("<img src='smiling-face-with-sunglasses-emoji.svg'>");
+        } else if (temperatureC >= 18) {
+            document.write("<img src='grinning-face-with-big-eyes-emoji.svg'>");
+        } else if (temperatureC >= 10) {
+            document.write("<img src='grimacing-face-emoji.svg'>");
+        } else {
+            document.write("<img src='cold-face-emoji.svg'>");
+        }
+    }
+</script>
+
+</body>
+</html>
