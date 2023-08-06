@@ -1,0 +1,46 @@
+<script>
+    grade = parseInt( prompt("Your grade please: "))
+
+
+    // HW:
+    // what would result
+
+    // parseInt( 9.9 )  is 9
+    // parseInt( 9.1 )  is 9
+    // parseInt( 9.5 )  is 9
+    // parseInt( 9.59 )  is 9
+
+    // to keep decimal values 
+
+    // parseFloat( 9.9 )  is 9.9
+    // parseFloat( 9.1 )  is 9.1
+    // parseFloat( 9.5 )  is 9.5
+    // parseFloat( 9.59 )  is 9.59
+
+    // limit = 8
+
+    if (grade <= 4) {
+        alert("VERY BAD!")        
+    } else if (grade <= 6) {
+        alert("BAD!")
+    } else if (grade <= 8) {
+        alert("OK!")
+    } else if (grade == 9) {
+        alert("GOOD!")
+    } else if (grade == 10) {
+        alert("EXCELLENT!")
+    }
+
+
+    //                                | ------IF -------->
+    // grade -- x --------------------X ------ A ---- X ->
+    //          1                     |
+    // < ---------------------else ---+
+
+    // HM3:
+    // 1..4 - Very bad
+    // 5..6 - Bad
+    // 7..8 - Ok
+    // 9    - Good
+    // 10   - Excellent
+</script> 
