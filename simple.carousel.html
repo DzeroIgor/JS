@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>News Carousel</title>
+</head>
+<body>
+    <section>
+        <header>
+            <h1>Breaking NEWS</h1>
+        </header>
+        <ul style="list-style: none;">
+            <li id="i1">
+                <article>
+                    <h2>News title 1</h2>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nemo magni, dolorem earum error molestiae obcaecati nisi voluptates tempora labore commodi?</p>
+                </article>
+            </li>
+            <li id="i2">
+                <article>
+                    <h2>News title 2</h2>
+                    <p>Ea, non! Molestias, incidunt. Rem aliquid ipsa magnam fugiat repellat laudantium perspiciatis similique corporis voluptates deleniti quidem id, nihil voluptate.</p>
+                </article>
+            </li>
+            <li id="i3" style="display: none;">
+                <article>
+                    <h2>News title 3</h2>
+                    <p>Doloremque adipisci quae quis quo esse, repellat voluptas alias rem sed iure distinctio laudantium, neque, consectetur nobis maxime exercitationem a.</p>
+                </article>
+            </li>
+            <li id="i4" style="display: none;">
+                <article>
+                    <h2>News title 4</h2>
+                    <p>Voluptates fuga fugiat dolorem sed harum nam maiores voluptatum ut, aliquam quaerat odit iste veniam est quos! Illo, illum dolores!</p>
+                </article>
+            </li>
+            <li id="i5" style="display: none;">
+                <article>
+                    <h2>News title 5</h2>
+                    <p>Incidunt cum harum vero nesciunt dolores nulla beatae sed, nihil officiis nam quasi quod corporis recusandae in ducimus! Nobis, velit.</p>
+                </article>
+            </li>
+            <li id="i6" style="display: none;">
+                <article>
+                    <h2>News title 6</h2>
+                    <p>Quos velit, rem enim aut eius quisquam recusandae! Culpa vitae nulla neque repellendus rem aliquid minima facere, aliquam cupiditate odit?</p>
+                </article>
+            </li>
+            <li id="i7" style="display: none;">
+                <article>
+                    <h2>News title 7</h2>
+                    <p>Officia blanditiis inventore, architecto dolores perferendis accusantium aperiam adipisci recusandae, doloremque reprehenderit iste, voluptates impedit consequuntur voluptatem! Tempore, dolor illo!</p>
+                </article>
+            </li>
+            <li id="i8" style="display: none;">
+                <article>
+                    <h2>News title 8</h2>
+                    <p>Inventore, hic. Modi ipsa perspiciatis ducimus rem velit et aut architecto dolor, inventore est, quos, facilis ipsam rerum! Fugiat, beatae.</p>
+                </article>
+            </li>
+        </ul>
+        <footer style="text-align: end;">
+            <button 
+                onclick="
+                prev()
+                "
+            >&lt;
+            </button>
+            <button 
+                onclick="
+                one()
+                "
+            >1</button>
+            <button 
+                onclick="
+                two()
+                "
+            >2</button>
+            <button 
+                onclick="
+                three()
+                "
+            >3</button>
+            <button 
+                onclick="
+                four()
+                "
+            >4</button>
+            <button 
+                onclick="
+                next()
+                "
+            >&gt;
+            </button>
+
+        </footer>
+    </section>
+
+    <script>
+        let page = 1
+        
+        function one () {
+            page = 1
+            if (page == 1) {
+                hideAll()
+                i1.style.display = 'block'
+                i2.style.display = 'block'
+            }            
+        }
+        function two () {
+            page = 2
+            if (page == 2) {
+                hideAll()
+                i3.style.display = 'block'
+                i4.style.display = 'block'
+            }             
+        }
+        function three () {
+            page = 3
+            if (page == 3) {
+                hideAll()
+                i5.style.display = 'block'
+                i6.style.display = 'block'
+            }             
+        }
+        function four () {
+            page = 4
+            if (page == 4) {
+                hideAll()
+                i7.style.display = 'block'
+                i8.style.display = 'block'
+            }
+        }
+        function prev () {
+            page--
+            if (page < 1) {
+                page=4
+            }
+            if (page == 1) {
+                pageOne()
+            }
+            if (page == 2) {
+                pageTwo()
+            }
+            if (page == 3) {
+                pageThree()
+            }
+            if (page == 4) {
+                pageFour()
+            }
+
+        }
+        function next () {
+            page++
+            if (page > 4) {
+                page=1
+            }
+            if (page==1) {
+                pageOne()
+            }
+            if (page==2) {
+                pageTwo()
+            }
+            if (page==3) {
+                pageThree()
+            }
+            if (page==4) {
+                pageFour()
+            }
+
+        }
+        function hideAll () {
+            i1.style.display='none'
+            i2.style.display='none'
+            i3.style.display='none'
+            i4.style.display='none'
+            i5.style.display='none'
+            i6.style.display='none'
+            i7.style.display='none'
+            i8.style.display='none'
+        }
+        function pageOne () {
+            hideAll()
+            i1.style.display = 'block'
+            i2.style.display = 'block'
+        }
+        function pageTwo () {
+            hideAll()
+            i3.style.display = 'block'
+            i4.style.display = 'block'
+        }
+        function pageThree () {
+            hideAll()
+            i5.style.display = 'block'
+            i6.style.display = 'block'
+        }
+        function pageFour () {
+            hideAll()
+            i7.style.display = 'block'
+            i8.style.display = 'block'
+        }
+
+    </script>
+    
+</body>
+</html>
