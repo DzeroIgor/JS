@@ -1,0 +1,30 @@
+<script>
+    // IN data
+    const EXTRA_SMALL = 576
+    const SMALL = 768
+    const MEDIUM = 992
+    const LARGE = 1200    
+    const EXTRA_LARGE =1400
+    const EXTRA_EXTRA_LARGE = 1600
+
+    let windowWith = innerWidth
+
+    if (windowWith <= 60 ) {
+        alert("Error screen size")
+    } else if (windowWith <= EXTRA_SMALL) {
+        alert("Extra Small screen: " + windowWith + "px")
+    } else if (windowWith <=  SMALL) {
+        alert("Small screen: " + windowWith + "px")
+    } else if (windowWith <= MEDIUM) {
+        alert("Medium screen: " + windowWith + "px")
+    } else if (windowWith <= LARGE) {
+        alert("Large screen: " + windowWith + "px")
+    } else if (windowWith <= EXTRA_LARGE) {
+        alert("Extra Large screen: " + windowWith + "px")
+    } else if (windowWith <= EXTRA_EXTRA_LARGE) {
+        alert("Extra Extra Large screen: " + windowWith + "px")
+    } else if (windowWith <= 3000) {
+        alert("Error screen size")
+    }
+
+</script>
