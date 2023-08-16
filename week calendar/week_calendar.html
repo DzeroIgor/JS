@@ -1,0 +1,91 @@
+<script>
+    // Chose the day
+
+    let day = parseInt(prompt("Day of the week? (1-7)"))   // 1 .. 7
+
+    let calendar = prompt("What type of calendar is?\n" + "gregorian or european")
+
+    
+    // switch (day) {
+    //         case 1: document.write("Monday"); break
+    //         case 2: document.write("Tuesday"); break
+    //         case 3: document.write("Wednesday"); break
+    //         case 4: document.write("Thursday"); break
+    //         case 5: document.write("Friday"); break
+    //         case 6: document.write("Saturday"); break
+    //         case 7: document.write("Sunday"); break
+    //     }
+
+      switch (day) {
+
+            case 1:
+                if (calendar === "european") {
+                    document.write("Monday")
+                } else if (calendar === "gregorian") {
+                    document.write("Sunday")
+                }
+                ; break
+
+            case 2:
+                if (calendar === "european") {
+                    document.write("Tuesday")
+                } else if (calendar === "gregorian") {
+                    document.write("Monday")
+                }
+                ; break
+
+            case 3:
+                if (calendar === "european") {
+                    document.write("Wednesday")
+                } else if (calendar === "gregorian") {
+                    document.write("Tuesday")
+                }
+                ; break
+
+            case 4:
+                if (calendar === "european") {
+                    document.write("Thursday")
+                } else if (calendar === "gregorian") {
+                    document.write("Wednesday")
+                }
+                ; break
+
+            case 5:                
+                if (calendar === "european") {
+                    let times = 3
+                    while (times > 0) {
+                        document.write("Yeeey!!!  :) ")
+                        times--
+                    } 
+                    document.write("Friday")
+                } else if (calendar === "gregorian") {
+                    document.write("Thursday")
+                }
+                ; break
+
+            case 6:
+                if (calendar === "european") {
+                    document.write("Saturday")
+                } else if (calendar === "gregorian") {
+                    let times = 3
+                    while (times > 0) {
+                        document.write("Yeeey!!!  :) ")
+                        times--
+                    } 
+                    document.write("Friday")
+                }
+                ; break
+
+            case 7:
+                if (calendar === "european") {
+                    document.write("Sunday")
+                } else if (calendar === "gregorian") {
+                    document.write("Monday")
+                }
+                ; break
+
+            default: document.write("Invalid day"); break
+
+        }        
+
+</script>

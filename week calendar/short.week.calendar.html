@@ -1,0 +1,47 @@
+<script>
+   
+
+    let day = parseInt(prompt("Day of the week? (1-7)"));
+    let calendar = prompt("What type of calendar is?\n" + "european or gregorian");
+
+    if (calendar === "european") {
+        switch (day) {
+            case 1: document.write("Monday"); break
+            case 2: document.write("Tuesday"); break
+            case 3: document.write("Wednesday"); break
+            case 4: document.write("Thursday"); break
+            case 5: 
+            let times = 3
+                while(times >0) {
+                    document.write("Yeeey!!!  :) ")
+                    times--
+                } 
+            document.write("Friday"); break
+            case 6: document.write("Saturday"); break
+            case 7: document.write("Sunday"); break
+
+            default: document.write("Invalid day"); break
+        }
+    } else if (calendar === "gregorian") {
+        day = day - 1
+        switch (day) {
+            case 0: document.write("Sunday"); break   
+            case 1: document.write("Monday"); break
+            case 2: document.write("Tuesday"); break
+            case 3: document.write("Wednesday"); break
+            case 4: document.write("Thursday"); break
+            case 5: 
+            let times = 3
+                while(times >0) {
+                    document.write("Yeeey!!!  :) ")
+                    times--
+                } 
+            document.write("Friday"); break
+            case 6: document.write("Saturday"); break            
+
+            default: document.write("Invalid day"); break
+        }              
+    } 
+
+
+</script>
