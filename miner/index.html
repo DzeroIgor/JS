@@ -17,7 +17,7 @@
             /* border: 1px solid #777; */
             float: left;
             background-size: contain;
-            background-image: url(stone.avif);
+            background-image: url(stone.jpg);
         }  
         .controls {
             height: 100px;
@@ -204,20 +204,115 @@
     <script>
         let row = 1
         let col = 1
+
+        let gRow = Math.round(Math.random() * 9 + 1)
+        let gCol = Math.round(Math.random() * 9 + 1)
+
+        let gId = "sq" + gRow + "x" + gCol 
+        let gDiv = window[gId] 
+        let gFound = false
         
+        gDiv.style.backgroundImage = 'url(diamond.png)'
+        gDiv.style.backgroundSize = 'contain'
+        gDiv.style.backgroundRepeat = 'no-repeat'
+        gDiv.style.backgroundPosition = 'center'
+
+        let gRowOne = Math.round(Math.random() * 9 + 1)
+        let gColOne = Math.round(Math.random() * 9 + 1)
+        
+        let gIdOne = "sq" + gRowOne + "x" + gColOne
+        let gDivOne = window[gIdOne]
+        let gFoundOne = false
+
+        gDivOne.style.backgroundImage = 'url(diamond.png)'
+        gDivOne.style.backgroundSize = 'contain'
+        gDivOne.style.backgroundRepeat = 'no-repeat'
+        gDivOne.style.backgroundPosition = 'center'
+
+        let gRowTwo = Math.round(Math.random() * 9 + 1)
+        let gColTwo = Math.round(Math.random() * 9 + 1)
+        
+        let gIdTwo = "sq" + gRowTwo + "x" + gColTwo
+        let gDivTwo = window[gIdTwo]
+        let gFoundTwo = false
+
+        gDivTwo.style.backgroundImage = 'url(diamond.png)'
+        gDivTwo.style.backgroundSize = 'contain'
+        gDivTwo.style.backgroundRepeat = 'no-repeat'
+        gDivTwo.style.backgroundPosition = 'center'
+
+        let gRowThree = Math.round(Math.random() * 9 + 1)
+        let gColThree = Math.round(Math.random() * 9 + 1)
+        
+        let gIdThree = "sq" + gRowThree + "x" + gColThree
+        let gDivThree = window[gIdThree]
+        let gFoundThree = false
+
+        gDivThree.style.backgroundImage = 'url(diamond.png)'
+        gDivThree.style.backgroundSize = 'contain'
+        gDivThree.style.backgroundRepeat = 'no-repeat'
+        gDivThree.style.backgroundPosition = 'center'
+
+        let gRowFour = Math.round(Math.random() * 9 + 1)
+        let gColFour = Math.round(Math.random() * 9 + 1)
+        
+        let gIdFour = "sq" + gRowFour + "x" + gColFour
+        let gDivFour = window[gIdFour]
+        let gFoundFour = false
+
+        gDivFour.style.backgroundImage = 'url(diamond.png)'
+        gDivFour.style.backgroundSize = 'contain'
+        gDivFour.style.backgroundRepeat = 'no-repeat'
+        gDivFour.style.backgroundPosition = 'center'
+        
+        let totalPoints = 0
+
+        function goldAlert() {
+            if (col == gCol && row == gRow && !gFound) {
+                gFound = true
+                totalPoints += 100                    
+                alert(totalPoints + " points")
+            }
+            if (col == gColOne && row == gRowOne && !gFoundOne) {
+                gFoundOne = true
+                totalPoints += 100
+                alert(totalPoints + " points")
+            }
+            if (col == gColTwo && row == gRowTwo && !gFoundTwo) {
+                gFoundTwo = true
+                totalPoints += 100
+                alert(totalPoints + " points")
+            }
+            if (col == gColThree && row == gRowThree && !gFoundThree) {
+                gFoundThree = true
+                totalPoints += 100
+                alert(totalPoints + " points")
+            }
+            if (col == gColFour && row == gRowFour && !gFoundFour) {
+                gFoundFour = true
+                totalPoints += 100
+                alert(totalPoints + " points")
+            }
+            if (gFound && gFoundOne && gFoundTwo && gFoundThree && gFoundFour) {
+                alert("GAME OVER! Total points: " + totalPoints)
+                location.reload();
+            }
+        }
+
         function updateR() {
             let id = 'sq' + row + 'x' + col
             let div = window[id]
             div.style.backgroundImage = 'url(miner.png)'
-            div.style.transform = 'none'
-           
+            div.style.transform = 'none'   
+            goldAlert ()      
         }
         function updateL() {
             let id = 'sq' + row + 'x' + col
             let div = window[id]
             div.style.backgroundImage = 'url(miner.png)'
-            div.style.transform = 'rotateY(180deg)'
-        }
+            div.style.transform = 'rotateY(180deg)'   
+            goldAlert ()  
+         }
 
         function clear() {
             let id = 'sq' + row + 'x' + col
@@ -255,7 +350,7 @@
 
         function extremes() {
             if (col > 10) {
-                col = 10
+                col = 10 
             }
             if (col < 1) {
                 col = 1
