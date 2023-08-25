@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            background-color: #123;
+        }
+        #forest {
+            position: relative;
+            width: 600px;
+            height: 250px;
+            border: 1px solid #fff;
+        }
+        .tree {
+            position: absolute;
+        }
+
+    </style>
+</head>
+<body>
+    <div id="forest"></div>
+
+    <script src="icons.js"></script>
+
+    <script>
+        function addTree (number, color, bottom, left, scale) {
+
+            switch (number) {
+                case 1: 
+                    forest.innerHTML += 
+                    `<div class="tree" style="left:${left}px; bottom: ${bottom}px; transform: scale(${scale})">` +
+                    tree_1.replace(`.fil11 {fill:#6A7D62}`, `.fil11 {fill:${color}}`) +
+                    `</div>`
+                ; break
+                case 2: 
+                    forest.innerHTML += 
+                    `<div class="tree" style="left:${left}px; bottom: ${bottom}px; transform: scale(${scale})">` +
+                    tree_2.replace(`.fil21 {fill:#A7A454}`, `.fil21 {fill:${color}}`) +
+                    `</div>`
+                ; break
+                case 3: 
+                    forest.innerHTML += 
+                    `<div class="tree" style="left:${left}px; bottom: ${bottom}px; transform: scale(${scale})">` +
+                    tree_3.replace(`.fil31 {fill:#6A7D62}`, `.fil31 {fill:${color}}`) +
+                    `</div>`
+                ; break
+                    
+            }
+        }        
+        
+        
+        for (let layer = 10; layer >= 1; layer--) {
+
+                for (let n = 1; n <= 30; n++) {
+
+                addTree(
+                    Math.round(1 + Math.random() * 2), 
+                    `rgba(0, ${210 - layer * 10 + Math.random() * 40}, 0, 1)`, 
+                    layer * 20, 
+                    Math.random() * 550, 
+                    1/layer)
+            }
+            
+        }
+ 
+
+        
+    </script>
+</body> 
+</html>
