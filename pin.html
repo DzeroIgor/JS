@@ -1,0 +1,40 @@
+<script>
+    // DATA
+    const PIN = "0009"
+
+    let pin   = ""
+    let tries = 0
+    let balance = 100000.00
+    
+    while (true) {
+        
+    pin = prompt("Ener PIN: ")
+    tries++
+
+    if (pin === PIN ) {
+        alert(`ACCES GRANTED!!! \n
+        your balance: ${balance}MDL`)
+
+        let money = +prompt("WITHDRAW: ?")
+        
+        if ( money > 50000 ) {
+            alert(`you can extracting max 50000 MDL`)
+            money = +prompt("WITHDRAW: ?")
+            balance -= money
+            alert(`SUCCES!!!\n
+            your balance: ${balance}MDL`)
+            ////////////////////////////////
+    
+            ////////////////////////////////
+        }         
+        break
+    } else {
+        alert("WRONG PIN!!!")
+        if (tries == 3) {
+            alert("CARD BLOCKED!!!")
+            break
+        }
+    }
+
+}
+</script>
