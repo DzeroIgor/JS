@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="menu"></div>
+        
+    <script>
+        const foodNames  = [ 'Pizza',   'Salad',    'Soup']
+        const foodPrices = [ 100.00 ,    75.00 ,    25.50 ]
+        const foodImages = [ '0.jpg',   '1.jpg',   '2.jpg']
+
+        let orderTotal   = 0
+        let discountTax = 45.00
+        let discountTotal = 0
+
+        function renderMenu () {
+            let html = `<table border="1" cellpadding="10">`
+
+            for (let i=0; i<foodNames.length; i++ ) {
+                    html += `<tr>`
+
+                        html += `<td><img src="${foodImages [i]}" height="150"></td>`
+                        html += `<td style="width: 150px; text-align: center;">${foodNames [i]}</td>`
+                        html += `<td style="width: 100px; text-align: right;">${foodPrices [i].toFixed(2) }</td>`   // parseFloat(num) ?
+                        html += `<td><button onclick="addItem(${ i })">+ ADD</button></td>`
+                        
+                        html += `</tr>`
+                    }
+
+                    html += `<tr>`
+                        html += `<td>Total</td>`
+                        html += `<td id="cellTotal" colspan="3" style="text-align: right;"></td>` 
+                    html += `</tr>`
+
+                    html += `<tr>`
+                        html += `<td>Total with discount <br> (-45 lei) from 500 lei</td>`
+                        html += `<td id="cellDiscount" colspan="3" style="text-align: right;"></td>` 
+                    html += `</tr>`
+
+                html += `</table>`
+                menu.innerHTML = html
+
+        }
+        function addItem(i) {
+            let quantity = +prompt(`How many "${foodNames [i]}" do you want?`)
+            let total = quantity * foodPrices [i]
+            let confirmed = confirm(`${foodNames [i]} x ${quantity} = ${total} \n confirm?` )
+
+            if(confirmed) {
+                orderTotal += total 
+
+                cellTotal.innerHTML = orderTotal.toFixed(2)
+            } else {
+                 
+            }
+            if (orderTotal >= 500) {
+                discountTotal = orderTotal - discountTax
+                cellDiscount.innerHTML = discountTotal.toFixed(2)
+            } else {
+                discountTotal = orderTotal
+                cellDiscount.innerHTML = discountTotal.toFixed(2)
+            }
+
+        }
+
+        renderMenu() 
+
+
+    </script>
+</body>
+</html>
