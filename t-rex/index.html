@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>T-Rex</title>
+    <style>
+        #m div {
+            width: 48px;
+            height: 48px;
+            border: 1px solid #DDD;
+            float: left;
+        }
+        #m .t-rex {
+            background-image: url(t-rex.jpg);
+            background-repeat: no-repeat;
+            background-size: contain;
+        }
+        #m .cactus {
+            background-image: url(cactus.png);
+            background-repeat: no-repeat;
+            background-size: contain;
+        }
+        #m .t-rex.right { 
+            transform: scaleX(1);
+        }
+        #m .t-rex.left { 
+            transform: scaleX(-1);
+        }
+    </style>
+</head>
+<body onkeydown="action ()">
+    <div id="m"></div>
+
+    <script>
+        let gameMap =[0, 2, 0, 0, 1, 0, 2, 0, 0, 2]
+        let ti = 4
+        let dir = "left"
+
+        function drawMap() {
+            m.innerHTML = ``
+            for (let i = 0; i < gameMap.length; i++) {
+                if (gameMap[i] == 0) {
+                    m.innerHTML += `<div></div>`
+                } else if (gameMap[i] == 1) {
+                    m.innerHTML += `<div class="t-rex ${dir}"></div>`
+                } else if (gameMap[i] == 2) {
+                    m.innerHTML += `<div class="cactus"></div>`
+                }
+                
+            }
+        }
+
+        drawMap()
+    
+        function action () {
+
+            if (dir === "left" && ti === 0) {
+                return
+            }
+            
+
+            switch (event.key) {
+                case "ArrowLeft":
+                    event.preventDefault();
+                    if (ti > 0) { 
+                        gameMap[ti] = 0;
+                        ti--;
+                        gameMap[ti] = 1;
+                        dir = "left";
+                        drawMap();
+                    }
+                    break;
+
+                case "ArrowRight":
+                    event.preventDefault();
+                    if (ti < gameMap.length - 1) { 
+                        gameMap[ti] = 0;
+                        ti++;
+                        gameMap[ti] = 1;
+                        dir = "right";
+                        drawMap();
+                    }
+                    break;
+            }
+            
+        }
+    </script>
+ 
+</body>
+</html>
