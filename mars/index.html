@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+        integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <style>
+        #container img {
+            height: 100px;
+            padding: 5px;
+        }
+        .left, .right {
+            background-color: transparent;
+            border: 0;
+            font-size: 2rem;
+            color: #5248db;
+        }
+        .left:hover, .right:hover {
+            color: #000d80;
+        }
+        .astro {
+            width: 100px;
+            margin-bottom: -15px;
+            animation: fly 2s linear infinite;
+        }
+        @keyframes fly {
+            0% {
+                margin-top: 0px;
+            }
+            50% {
+                margin-top: 10px;
+            }
+            100% {
+                margin-top: 0px;
+            }
+            
+        }
+    </style>
+</head>
+<body onkeydown="action ()">
+    <div id="container"></div>
+<button onclick="prev()" class="left"> <i class="fa-solid fa-chevron-left"></i> </button>
+<img src="astronaute.png" class="astro">
+<button onclick="next()" class="right"> <i class="fa-solid fa-chevron-right"></i> </button>
+
+    <script src="photos.js"></script>
+    <script>
+        // for (let index=0; index<4; index++) {        
+        // let url = data.photos[index].img_src
+        // container.innerHTML += `<img src="${url}"/>`
+        // }
+
+        let n = 0; // Indexul curent al primei imagini de pe pagina curentă
+
+            function showImages(n) {
+                container.innerHTML = ''
+
+                let startIndex = n;
+                let endIndex = Math.min(n + 4, data.photos.length);
+
+                for (let index = startIndex; index < endIndex; index++) {
+                    let url = data.photos[index].img_src;
+                    container.innerHTML += `<img src="${url}" alt="Imagine ${index + 1}"/>`;
+                }
+            }
+
+            function next() {
+                n += 4
+                if (n > data.photos.length - 1) {
+                    n = data.photos.length - 1
+                }
+                showImages(n)
+            }
+            function prev() {
+                n -= 4
+                if (n < 0) {
+                    n = 0
+                }
+                showImages(n)
+            }
+            showImages(n)
+
+        function action() {
+            switch (event.key) {
+                case "ArrowLeft":
+                    prev()
+                    break
+
+                case "ArrowRight":
+                    next()
+                    break
+            }
+        }
+    </script>
+</body>
+</html>
