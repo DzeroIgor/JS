@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+        integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@400;500;600&display=swap');
+
+        table {
+            border: 5px solid #8a8a8a;
+            max-width: 900px !important;
+            margin: auto;
+            margin-top: 2%;
+            font-family: 'Roboto Slab', serif;
+        }
+
+        th {
+            text-align: center;
+            font-size: 1.25rem;
+            font-weight: 600;
+        }
+
+        td {
+            /* border: 1px solid #777; */
+            text-align: center;
+            font-size: 1.25rem;
+            padding: .5rem 1.5rem;
+            font-weight: 400;
+        }
+        img {
+            height: 100px;
+        }
+    </style>
+</head>
+
+<body>
+    <table class="table table-striped table-hover">
+        <thead>
+            <th> </th>
+            <th class="text-start">Name</th>
+            <th>Price</th>
+            <th>Quantity</th>
+            <th>Add</th>
+            <th>Total</th>
+        </thead>
+        <tbody id="tBody">
+
+        </tbody>
+        <tfoot id="tFoot">
+
+        </tfoot>
+    </table>
+
+    <script>
+        let data = [
+            {
+                img: "1.jpg",
+                name: "Crunch shrimp roll",
+                price: 165,
+                quantity: 0,
+                totalProductPrice: 0
+            },
+            {
+                img: "2.jpg",
+                name: "Beijing duck small",
+                price: 315,
+                quantity: 0,
+                totalProductPrice: 0
+            },
+            {
+                img: "3.jpg",
+                name: "Madam Wong",
+                price: 280,
+                quantity: 0,
+                totalProductPrice: 0
+            },
+            {
+                img: "4.jpg",
+                name: "Black fungus mushrooms",
+                price: 90,
+                quantity: 0,
+                totalProductPrice: 0
+            },            
+        ]
+        let fTotal = 0;
+        
+        function render() {
+            tBody.innerHTML = ``
+            for (let i = 0; i < data.length; i++)
+                tBody.innerHTML += `
+            <tr>
+                <td class="align-middle"><img src="${data[i].img}" /></td>
+                <td class="align-middle text-start">${data[i].name}</td>
+                <td class="align-middle">${data[i].price} lei</td>
+                <td class="align-middle">${data[i].quantity} pcs.</td>
+                <td class="align-middle">
+                    <button onclick="add(${i})"
+                    class="btn btn-outline-dark mb-1"><i class="fa-solid fa-plus"></i></button>   
+                    <br>   
+                    <button onclick="remove(${i})"
+                    class="btn btn-outline-dark"><i class="fa-solid fa-minus"></i></button>   
+                    <td class="align-middle">${data[i].totalProductPrice} lei</td>
+                </td>
+            </tr>
+        `
+        tFoot.innerHTML = ``            
+        tFoot.innerHTML += `
+            <tr>
+                <td class="align-middle"></td>
+                <td class="align-middle"></td>
+                <td class="align-middle"></td>
+                <td class="align-middle"></td>
+                <td class="align-middle fw-bold">Total</td>
+                <td class="align-middle" style="width: 100px">
+                    ${fTotal} lei
+                </td>
+                
+            </tr>
+        `
+        }              
+        function add(index) {
+            data[index].totalProductPrice += data[index].price
+            calculateTotal()
+            calculateQuantityPlus(index)
+            render() 
+        }
+        function remove(index) {
+            if (data[index].totalProductPrice - data[index].price >= 0) {
+                data[index].totalProductPrice -= data[index].price
+            } else {
+                data[index].totalProductPrice = 0
+            }
+            calculateTotal()
+            calculateQuantityMinus(index)
+            render()
+        }
+        function calculateTotal() {
+            fTotal = 0
+            for (let i = 0; i < data.length; i++) {
+                fTotal += data[i].totalProductPrice
+            }
+            render()
+        }
+        function calculateQuantityPlus(index) {
+            data[index].quantity += 1
+            render();
+        }
+        function calculateQuantityMinus(index) {
+            if (data[index].quantity - 1 >= 0) {
+                data[index].quantity -= 1
+            } else {
+                data[index].quantity = 0
+            }            
+            render()
+        }
+        render()
+
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"
+        integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>
