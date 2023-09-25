@@ -1,0 +1,45 @@
+body {
+    background-color: #234;
+}
+#container {
+    position: relative;
+    width: 500px;
+    height: 560px;
+    margin: auto;
+    margin-top: 10px;
+}
+#snowContainer {
+    width: 500px;
+    height: 500px;
+    border: 10px solid #fff;
+    position: absolute;
+    overflow: hidden;
+}
+
+#snowContainer .flake {
+    width: 5px;
+    height: 5px;
+    border-radius: 100%;
+    background-color: #fff;
+    position: absolute;
+    z-index: 1;
+}
+.snowman {
+    position: absolute;
+    height: 300px;
+    bottom: 50px;
+    right: 10px;
+}
+.snowman img {
+    height: 300px;
+}
+.button {
+    width: 500px;
+    height: 560px;
+}
+button {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+}
