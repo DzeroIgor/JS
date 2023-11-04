@@ -8,8 +8,9 @@ class Snake {
         this.children = [];
         this.children.push(new Head(x, y, "up"));
         this.children.push(new Body(x, y+1, dir));
-        // this.children.push(new Body(x, y+2, dir));
-        this.children.push(new Tail(x, y+2, dir));
+        this.children.push(new Body(x, y+2, dir));
+        this.children.push(new Body(x, y+3, dir));
+        this.children.push(new Tail(x, y+4, dir));
 
         // switch (dir) {
         //     case "up":
@@ -94,6 +95,25 @@ class Snake {
                 } else if (s.dir === "down" && neighbor.dir === "left") {
                     s.dir = "down-left";
                 } else if (s.dir === "right" && neighbor.dir === "up") {
+                    s.dir = "down-left";
+                }
+
+                if (i != 0)
+                if (s.dir === "up" && neighbor.dir === "up-right") {
+                    s.dir = "up-right";
+                } else if (s.dir === "left" && neighbor.dir === "up-right") {
+                    s.dir = "up-right";
+                } else if (s.dir === "up" && neighbor.dir === "up-left") {
+                    s.dir = "up-left";
+                } else if (s.dir === "right" && neighbor.dir === "up-left") {
+                    s.dir = "up-left";
+                } else if (s.dir === "down" && neighbor.dir === "down-right") {
+                    s.dir = "down-right";
+                } else if (s.dir === "left" && neighbor.dir === "down-right") {
+                    s.dir = "down-right";
+                } else if (s.dir === "down" && neighbor.dir === "down-left") {
+                    s.dir = "down-left";
+                } else if (s.dir === "right" && neighbor.dir === "down-left") {
                     s.dir = "down-left";
                 }
 
