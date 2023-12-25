@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <title>List of programming languages</title>
+
+    <style>
+        body {
+            background-color: #14151d;
+            color: #fff;
+            text-align: center;
+            font-family: monospace;
+        }
+    </style>
+</head>
+
+<body>
+    <h1 class="pt-5 pb-4">List of programming languages</h1>
+
+    <button class="btn btn-light mb-4" id="a"> A </button>
+    <button class="btn btn-light mb-4" id="b"> B </button>
+    <button class="btn btn-light mb-4" id="c"> C </button>
+    <button class="btn btn-light mb-4" id="d"> D </button>
+    <button class="btn btn-light mb-4" id="e"> E </button>
+    <button class="btn btn-light mb-4" id="f"> F </button>
+    <button class="btn btn-light mb-4" id="g"> G </button>
+    <button class="btn btn-light mb-4" id="h"> H </button>
+    <button class="btn btn-light mb-4" id="i"> I </button>
+    <button class="btn btn-light mb-4" id="j"> J </button>
+    <button class="btn btn-light mb-4" id="k"> K </button>
+    <button class="btn btn-light mb-4" id="l"> L </button>
+    <button class="btn btn-light mb-4" id="m"> M </button>
+    <button class="btn btn-light mb-4" id="n"> N </button>
+    <button class="btn btn-light mb-4" id="o"> O </button>
+    <button class="btn btn-light mb-4" id="p"> P </button>
+    <button class="btn btn-light mb-4" id="q"> Q </button>
+    <button class="btn btn-light mb-4" id="r"> R </button>
+    <button class="btn btn-light mb-4" id="s"> S </button>
+    <button class="btn btn-light mb-4" id="t"> T </button>
+    <button class="btn btn-light mb-4" id="u"> U </button>
+    <button class="btn btn-light mb-4" id="v"> V </button>
+    <button class="btn btn-light mb-4" id="w"> W </button>
+    <button class="btn btn-light mb-4" id="x"> X </button>
+    <button class="btn btn-light mb-4" id="y"> Y </button>
+    <button class="btn btn-light mb-4" id="z"> Z </button>
+
+    <table id="table" class="table table-dark table-hover w-75 m-auto">
+    </table>
+
+
+
+    <script>
+        const URL = 'https://en.wikipedia.org/wiki/List_of_programming_languages';
+
+        let xhr = new XMLHttpRequest();
+
+        let alphabet = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'];
+
+        for (let i = 0; i < alphabet.length; i++) {
+            let button = document.getElementById(alphabet[i]);
+
+            button.addEventListener("click", function () {
+                function loadPage() {
+                    let xhr = new XMLHttpRequest();
+                    xhr.open('GET', URL);
+
+                    xhr.onload = () => {
+                        clearTable()
+
+                        let html = xhr.responseText;
+                        let parser = new DOMParser();
+                        let htmlDoc = parser.parseFromString(html, 'text/html');
+
+                        let languages = [];
+
+                        let divs = htmlDoc.querySelectorAll('.div-col');
+                        let div = divs[i]; // Folosim let pentru a asigura contextul corect al lui i
+                        let lis = div.firstElementChild.children;
+
+                        for (let j = 0; j < lis.length; j++) {
+                            languages.push(lis[j].firstElementChild.innerText);
+                            document.getElementById("table").innerHTML += `
+                                    <tr><td>${languages[j]}</td></tr>
+                                `;
+                        }
+
+                        console.log(languages);
+                    };
+
+                    xhr.send();
+                }
+
+                loadPage();
+            });
+        }
+
+
+        xhr.open('GET', URL);
+
+        function clearTable() {
+            document.getElementById("table").innerHTML = ""; // Curăță conținutul tabelului
+        }
+
+    </script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+            crossorigin="anonymous"></script>
+
+</body>
+
+</html>
