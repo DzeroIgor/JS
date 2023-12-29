@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NEWS AGGREGATOR</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <style>
+        body {
+            background-color: #fefefe;
+            /* color: #fff; */
+
+        }
+
+        h1,
+        h2 {
+            text-align: center;
+        }
+
+        #form input {
+            padding: 1em;
+            font-size: 150%;
+            width: 100%;
+            box-sizing: border-box;
+            text-align: center;
+        }
+        #content {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 40px;
+        }
+        #content .news  {
+            width: 600px;
+            background-color: transparent;
+            border: 0;
+        }
+        #content .news h3  {
+            font-size: 1.25rem;
+        }
+        #content .news img {
+            width: 200px;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>NEWS AGGREGATOR</h1>
+    <h2>your favorite news app.</h2>
+    <form id="form">
+        <input type="text" placeholder="keywords here ..." id="inputElement" autofocus>
+    </form>
+    <div id="content" class=" container py-4">
+    </div>
+
+    <script>
+
+        const config = [
+          
+            {
+                name: "TV8 News",
+                url: "https://tv8.md/ro/search",
+                param: "query",
+                domMapping: {
+                    title: "h1 ~ a > div > div",
+                    image: "h1 ~ a > img",
+                    link: "h1 ~ a ",
+                    date: "h1 ~ a > div > h6"
+                }
+            },
+        ]
+
+        const formElement = document.getElementById('form')
+
+        const inputElement = document.getElementById('inputElement')
+
+        const contentElement = document.getElementById('content')
+
+        const onKeypress = (e) => {
+
+        }
+
+        const onSubmit = (e) => {
+            e.preventDefault()
+
+            let keyPhrase = inputElement.value
+            console.log(keyPhrase)
+            sendSearch(config[0], keyPhrase)
+        }
+
+        const render = (data, parent) => {
+            for (i = 0; i < data.length; i++) {
+                
+                let div = document.createElement('div');
+                div.classList.add('card', 'news');
+
+                let a = document.createElement('a');
+                a.href = data[i].href; 
+                a.target = "_blank";
+                a.classList.add('link-dark', 'link-offset-2', 'link-underline', 'link-underline-opacity-0');
+
+                let row = document.createElement('div');
+                row.classList.add('row');
+
+                let col4 = document.createElement('div');
+                col4.classList.add('col-4');
+
+                let img = document.createElement('img');
+                img.src = data[i].img_src;
+                img.alt = data[i].title
+                col4.appendChild(img);
+
+                let col8 = document.createElement('div');
+                col8.classList.add('col-8');
+
+                let h3 = document.createElement('h3');
+                h3.classList.add('card-text');
+                h3.innerText = data[i].title;
+
+                let p = document.createElement('p');
+                p.classList.add('text-end', 'px-4');
+                p.innerText = data[i].date;
+
+                col8.appendChild(h3);
+                col8.appendChild(p);
+
+                row.appendChild(col4);
+                row.appendChild(col8);
+
+                a.appendChild(row);
+                div.appendChild(a);
+
+                parent.appendChild(div);
+ 
+                // console.log(data[i].href)
+            }
+        }
+
+        const sendSearch = (portal, keyPhrase) => {
+            console.log(portal, keyPhrase)
+
+            let xhr = new XMLHttpRequest();
+            xhr.open('GET', portal.url + "?" + portal.param + "=" + keyPhrase)
+
+            xhr.onload = () => {
+                let html = xhr.responseText    // string
+                let parser = new DOMParser()
+                let htmlDoc = parser.parseFromString(html, "text/html")   // DOM structure
+
+                let titleElements = htmlDoc.querySelectorAll(portal.domMapping.title)
+                let imageElements = htmlDoc.querySelectorAll(portal.domMapping.image)
+                let linkElement = htmlDoc.querySelectorAll(portal.domMapping.link)
+                let dateElement = htmlDoc.querySelectorAll(portal.domMapping.date)
+
+                // document.body.innerHTML = htmlDoc.body.innerHTML
+
+                let news = []
+                let baseURL = 'https://tv8.md';
+                for (let i = 0; i < 10; i++) {
+                    let cleanHref = linkElement[i].href.replace(/^(http|https):\/\/[0-9.:]+/, '');
+                    news.push({
+                        title: titleElements[i].innerText,
+                        img_src: imageElements[i].src,
+                        href: cleanHref,
+                        date: dateElement[i].innerText,
+                    })
+                }
+                news = news.map(item => {
+                    let formattedHref = item.href.startsWith('/') ? item.href : `/${item.href}`;
+                    return {
+                        ...item,
+                        href: baseURL + formattedHref
+                    };
+                });
+                contentElement.innerHTML = ""
+                render(news, contentElement)
+            }
+
+            xhr.send()
+
+        }
+
+        inputElement.addEventListener('keyup', onKeypress)
+        formElement.addEventListener('submit', onSubmit)
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>
