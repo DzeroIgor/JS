@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- source: https://sv443.net/jokeapi/v2/ -->
+    <button onclick="location.reload()">GENERATE NEW JOKE</button>
+    <div id="output">        
+    </div>
+
+    <script>
+        fetch('https://v2.jokeapi.dev/joke/Any')
+            .then(response => response.json())
+            .then(data => {
+                const output = document.getElementById('output');
+                const category = document.createElement('h2')
+                category.textContent = `Category: `;
+                category.textContent += data.category;
+                const p_joke = document.createElement('p');
+                p_joke.textContent = data.setup;
+                const p_response = document.createElement('p');
+                p_response.textContent = data.delivery;
+                output.appendChild(category);
+                output.appendChild(p_joke);
+                output.appendChild(p_response);
+            })
+            .catch(error => console.error('Error:', error));    
+    </script>
+</body>
+</html>
