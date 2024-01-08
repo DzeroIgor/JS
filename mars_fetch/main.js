@@ -43,8 +43,8 @@ function createGliderDOM(data) {
 
 function newGlider (){
 new Glider(document.querySelector('.glider'), {
-  slidesToShow: 5,
-  slidesToScroll: 5,
+  slidesToShow: 4,
+  slidesToScroll: 4,
   draggable: true,
 //   dots: '.dots',
   arrows: {
