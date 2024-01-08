@@ -1,6 +1,5 @@
 const KEY = "sESkWNLWXJHc1QSyCNVyyLSbeaIhXCkWNBaYloOk"
 let slidersContainer = document.querySelector('.glider')     
-let div
 
 function loadMarsRoverPhotosData() {
     let input = document.querySelector(`#search`);
@@ -16,36 +15,42 @@ function loadMarsRoverPhotosData() {
 }
 
 function parseMarsRoverPhotosData( data ) {
-    slidersContainer.innerHTML = ``
-    createGliderDOM( data )
 
+    
+
+    createGliderDOM( data )    
 }
 
-function createGliderDOM( data ) {
-    
-    data.photos.forEach( photo => {
-        div = document.createElement('div')
-        div.appendChild( document.createElement('img') )
-        div.firstElementChild.src = photo.img_src
-        div.appendChild(document.createElement('h5'))
-        div.lastChild.innerText = photo.earth_date
-        div.appendChild(document.createElement('h4'))
-        div.lastChild.innerText = photo.camera.full_name
-        slidersContainer.appendChild(div)
-        
-    });
-    newGlider()    
+function createGliderDOM(data) {
+    if (data.photos.length === 0) {
+        slidersContainer.innerHTML = `<p style="text-align: center; width: 100vw;">Nu există date disponibile pentru această căutare.</p>`;
+    } else {
+        slidersContainer.innerHTML = '';
+        data.photos.forEach(photo => {
+            div = document.createElement('div')
+            div.appendChild(document.createElement('img'))
+            div.firstElementChild.src = photo.img_src
+            div.appendChild(document.createElement('h5'))
+            div.lastChild.innerText = photo.earth_date
+            div.appendChild(document.createElement('h4'))
+            div.lastChild.innerText = photo.camera.full_name
+            slidersContainer.appendChild(div)
+
+        });
+        newGlider()
+    }
 }
 
 function newGlider (){
-  new Glider(document.querySelector('.glider'), {
-  slidesToScroll: 3,
-  slidesToShow: 3,
+new Glider(document.querySelector('.glider'), {
+  slidesToShow: 5,
+  slidesToScroll: 5,
   draggable: true,
-  dots: '.dots',
+//   dots: '.dots',
   arrows: {
     prev: '.glider-prev',
-    next: '.glider-next' 
+    next: '.glider-next'
   }
-})
+});
+
 }
