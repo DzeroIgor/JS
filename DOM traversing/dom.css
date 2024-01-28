@@ -1,0 +1,16 @@
+body {
+    background-color: #444;
+    color: #999;
+}
+
+#root {
+border: 2px solid #999;
+margin: 10px;
+padding: 10px;
+}
+
+#root  div{
+    border: 2px solid #999;
+    margin: 10px;
+    padding: 10px;
+}
